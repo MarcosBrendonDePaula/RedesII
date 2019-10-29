@@ -22,7 +22,13 @@ public class Chat {
      */
     public static void main(String[] args) {
         Scanner x=new Scanner(System.in);
-        EasyMultServer servidor = new EasyMultServer(25565);
+        //Servidor Basico
+        
+        //EasyMultServer servidor = new EasyMultServer(25565);
+        
+        //servidor medio com edição da funçao de aceitação de clientes
+        ExemploSevSobrecarga servidor= new ExemploSevSobrecarga(25565);
+        
         servidor.start();
         while(true){
             //da um tempo para não sobrecarregar o processador
