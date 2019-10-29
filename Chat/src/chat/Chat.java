@@ -5,6 +5,12 @@
  */
 package chat;
 
+import EasySocket.EasyMultServer;
+import EasySocket.nsocket;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author MarcosBrendon
@@ -15,7 +21,25 @@ public class Chat {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner x=new Scanner(System.in);
+        EasyMultServer servidor = new EasyMultServer(25565);
+        servidor.start();
+        while(true){
+            //da um tempo para não sobrecarregar o processador
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //caso entrar no if significa que chegou mensagem para processar
+            if(!servidor.getOrdem().isEmpty()){
+                nsocket atual = servidor.getConID(servidor.getOrdem().getFirst());
+                System.out.println(atual.getEntrada());
+                //removendo o primeiro pois ja foi processado.
+                servidor.getOrdem().removeFirst();
+            }
+        }
+        
     }
     
 }
