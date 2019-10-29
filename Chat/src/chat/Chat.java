@@ -5,11 +5,8 @@
  */
 package chat;
 
-import EasySocket.EasyMultServer;
-import EasySocket.nsocket;
+
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

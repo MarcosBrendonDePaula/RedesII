@@ -27,7 +27,8 @@ public class TratadorDeConexão {
                     Logger.getLogger(TratadorDeConexão.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if(!Atual.getBufferEntradas().isEmpty()){
-                    System.out.println(Atual.getId()+"Mandou:"+Atual.getEntrada());
+                    System.out.println(Atual.getId()+" Mandou: "+Atual.getEntrada());
+                    Atual.Enviar("Recebido");
                 }
             }
         }
