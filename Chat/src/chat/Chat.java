@@ -24,7 +24,7 @@ public class Chat {
         //EasyMultServer servidor = new EasyMultServer(25565);
         
         //servidor medio com edição da funçao de aceitação de clientes
-        ExemploSevSobrecarga servidor= new ExemploSevSobrecarga(25565);
+        ExemploSevSobrecarga servidor = new ExemploSevSobrecarga(25565);
         servidor.start();
         x.nextInt();
         
