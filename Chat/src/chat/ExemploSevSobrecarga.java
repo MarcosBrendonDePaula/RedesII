@@ -17,7 +17,8 @@ public class ExemploSevSobrecarga extends EasyMultServer{
 
     @Override
     public void funçaoExtra(nsocket Aceitado) {
-        System.out.println(Aceitado.getId()+":Conectado ");
+        System.out.println(Aceitado.getId()+":Conectado");
+        new TratadorDeConexão(Aceitado);
     }
     
     

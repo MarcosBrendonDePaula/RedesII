@@ -23,28 +23,27 @@ public class Chat {
     public static void main(String[] args) {
         Scanner x=new Scanner(System.in);
         //Servidor Basico
-        
         //EasyMultServer servidor = new EasyMultServer(25565);
         
         //servidor medio com edição da funçao de aceitação de clientes
         ExemploSevSobrecarga servidor= new ExemploSevSobrecarga(25565);
-        
         servidor.start();
-        while(true){
-            //da um tempo para não sobrecarregar o processador
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //caso entrar no if significa que chegou mensagem para processar
-            if(!servidor.getOrdem().isEmpty()){
-                nsocket atual = servidor.getConID(servidor.getOrdem().getFirst());
-                System.out.println(atual.getEntrada());
-                //removendo o primeiro pois ja foi processado.
-                servidor.getOrdem().removeFirst();
-            }
-        }
+        x.nextInt();
+//        while(true){
+//            //da um tempo para não sobrecarregar o processador
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            //caso entrar no if significa que chegou mensagem para processar
+//            if(!servidor.getOrdem().isEmpty()){
+//                nsocket atual = servidor.getConID(servidor.getOrdem().getFirst());
+//                System.out.println(atual.getEntrada());
+//                //removendo o primeiro pois ja foi processado.
+//                servidor.getOrdem().removeFirst();
+//            }
+//        }
         
     }
     
