@@ -21,11 +21,16 @@ public class TratadorDeConexão {
         public void run() {
             System.out.println("Aguardando MSGS");
             while(true){
+                //se o usuario desconectar encerra esta thread
+                if(!Atual.getVerificador().isAlive())
+                    return;
+                //da um tempo de delay para não fuder o processador
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(TratadorDeConexão.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                //se tiver mensagem responda
                 if(!Atual.getBufferEntradas().isEmpty()){
                     System.out.println(Atual.getId()+" Mandou: "+Atual.getEntrada());
                     Atual.Enviar("Recebido");
