@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     public EasySocket cliente;
     public EditText ipporta;
     public EditText nome;
-    public Button ConnectBtn;
+    public static Button ConnectBtn;
     public EditText campo;
     public EditText Texto;
     public Button EnviarBtn;
@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             while(true){
                 if(cliente.getSocket()==null){
-                    cliente=null;
                     return;
                 }
                 try {
@@ -59,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String[] x = (ipporta.getText()+"").split(":");
                 cliente = new EasySocket(x[0],Integer.parseInt(x[1]),"cliente");
-                cliente.ClientStart();
+                if(cliente.ClientStart())
+                    ConnectBtn.setText("Conectado");
                 cliente.startVerificador();
                 Monitora.start();
             }
