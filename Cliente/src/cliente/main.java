@@ -30,8 +30,11 @@ public class main extends javax.swing.JFrame {
                     
                 try {
                     Thread.sleep(100);
-                    if(!Cliente.Buffer.isEmpty())
-                        jTextArea2.append(Cliente.getEntrada()+"\n");
+                    if(!Cliente.Buffer.isEmpty()){
+                        String entrada = Cliente.getEntrada();
+                        jTextArea1.append(entrada+"\n");
+                        jTextArea2.append(Descriptografar.Vigenere(entrada, jTextField5.getText())+"\n");
+                    }
                 } catch (Exception ex) {
                     System.out.println("Erro Thread");
                 }
@@ -260,7 +263,7 @@ public class main extends javax.swing.JFrame {
                     return;
                 jTextArea2.append("Voce: "+jTextField3.getText()+"\n");
                 jTextArea1.append("Voce: "+Criptografar.Vigenere(jTextField3.getText(), jTextField5.getText())+"\n");
-                Cliente.Enviar(jTextField4.getText()+": "+Criptografar.Vigenere(jTextField3.getText(), jTextField5.getText()));
+                Cliente.Enviar(Criptografar.Vigenere(jTextField4.getText()+":"+jTextField3.getText(), jTextField5.getText()));
                 jTextField3.setText("");
             }catch(Exception e){
                 
