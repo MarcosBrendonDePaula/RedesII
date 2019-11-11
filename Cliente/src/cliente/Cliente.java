@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package cliente;
+import Cripto.Criptografar;
+import Cripto.Descriptografar;
 
 /**
  *
@@ -17,6 +19,10 @@ public class Cliente {
     public static void main(String[] args) {
         main atual=new main();
         atual.setVisible(true);
+        
+        String texto = Criptografar.Vigenere("Eae pessoal, tudo bem? Aqui quem fala é o Edu!", "senha");
+        Descriptografar.Vigenere(texto, "senha");
+        
     }
     
 }
