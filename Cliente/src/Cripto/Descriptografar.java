@@ -10,11 +10,14 @@ package Cripto;
  * @author Eric_
  */
 public class Descriptografar {
-    static private char Matriz_Vinegere[][] = new char[27][27];
+    private char Matriz_Vinegere[][] = new char[27][27];
     
-    static private char vetor[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    private char vetor[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     
-    static public String Vigenere(String texto, String Chave){
+    public Descriptografar(){
+        
+    }
+    public String Vigenere(String texto, String Chave){
         String TextoCriptografado = "";
         texto = texto.toUpperCase();
         Chave = Chave.toUpperCase();

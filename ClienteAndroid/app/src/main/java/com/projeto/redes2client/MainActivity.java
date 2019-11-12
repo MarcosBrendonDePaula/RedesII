@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(500);
                     if(!cliente.Buffer.isEmpty())
                         campo.append(Descriptografar.Vigenere(cliente.getEntrada(),Key.getText()+"")+"\n");
                 } catch (Exception ex) {
