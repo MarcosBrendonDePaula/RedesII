@@ -1,2 +1,2 @@
-include ':app', ':EasyProject'
+include ':app'
 rootProject.name='Redes2Client'
