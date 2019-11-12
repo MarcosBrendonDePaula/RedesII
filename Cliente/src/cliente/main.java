@@ -87,16 +87,11 @@ public class main extends javax.swing.JFrame {
 
         jLabel1.setText("IP:");
 
-        jTextField1.setText("0.0.0.0");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextField1.setText("158.69.246.121");
 
         jLabel2.setText("Mensagens");
 
-        jTextField2.setText("00000");
+        jTextField2.setText("25718");
 
         jTextField3.setToolTipText("");
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -134,18 +129,13 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
         jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField5KeyReleased(evt);
             }
         });
 
-        jLabel6.setText("Chave:");
+        jLabel6.setText("Key:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,10 +216,6 @@ public class main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
             Cliente = new EasySocket(jTextField1.getText(),Integer.parseInt(jTextField2.getText()), "cliente");
@@ -250,6 +236,7 @@ public class main extends javax.swing.JFrame {
             jTextArea2.append("Voce: "+jTextField3.getText()+"\n");
             jTextArea1.append("Voce: "+Criptografar.Vigenere(jTextField3.getText(), jTextField5.getText())+"\n");
             Cliente.Enviar(jTextField4.getText()+": "+Criptografar.Vigenere(jTextField3.getText(), jTextField5.getText()));
+            //Cliente.Enviar(jTextField4.getText()+": "+jTextField3.getText());
             jTextField3.setText("");
         }catch(Exception e){
             
@@ -264,6 +251,7 @@ public class main extends javax.swing.JFrame {
                 jTextArea2.append("Voce: "+jTextField3.getText()+"\n");
                 jTextArea1.append("Voce: "+Criptografar.Vigenere(jTextField3.getText(), jTextField5.getText())+"\n");
                 Cliente.Enviar(Criptografar.Vigenere(jTextField4.getText()+":"+jTextField3.getText(), jTextField5.getText()));
+                //Cliente.Enviar(jTextField4.getText()+": "+jTextField3.getText());
                 jTextField3.setText("");
             }catch(Exception e){
                 
@@ -278,10 +266,6 @@ public class main extends javax.swing.JFrame {
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5KeyReleased
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
