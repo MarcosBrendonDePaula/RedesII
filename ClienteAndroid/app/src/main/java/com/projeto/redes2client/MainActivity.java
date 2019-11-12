@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.projeto.redes2client.Cripto.Criptografar;
+import com.projeto.redes2client.Cripto.Descriptografar;
+
 import EasySocket.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    Thread.sleep(300);
+                    Thread.sleep(1000);
                     if(!cliente.Buffer.isEmpty())
                         campo.append(cliente.getEntrada()+"\n");
                 } catch (Exception ex) {
@@ -53,13 +56,20 @@ public class MainActivity extends AppCompatActivity {
         EnviarBtn = findViewById(R.id.button2);
         Monitora = new Thread(Atualizador);
 
+        //
+        String teste = Criptografar.Vigenere("Oi eu sou o goku", "senha");
+        Descriptografar.Vigenere("teste", "senha");
+
+
+
+        //
         ConnectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String[] x = (ipporta.getText()+"").split(":");
                 cliente = new EasySocket(x[0],Integer.parseInt(x[1]),"cliente");
                 if(cliente.ClientStart())
-                    ConnectBtn.setText("Conectado!");
+                    ConnectBtn.setText("Conectado");
                 cliente.startVerificador();
                 Monitora.start();
             }
