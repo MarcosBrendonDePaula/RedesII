@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Thread.sleep(100);
                     if(!cliente.Buffer.isEmpty())
-                        campo.append(cliente.getEntrada()+"\n");
+                        campo.append(Descriptografar.Vigenere(cliente.getEntrada(),Key.getText()+"")+"\n");
                 } catch (Exception ex) {
                     System.out.println("Erro Thread");
                 }
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 campo.append("Voce:"+Texto.getText()+"\n");
-                cliente.Enviar(nome.getText()+":"+Texto.getText());
+                cliente.Enviar( Criptografar.Vigenere(nome.getText()+":"+Texto.getText(),Key.getText()+""));
                 Texto.setText("");
             }
         });
