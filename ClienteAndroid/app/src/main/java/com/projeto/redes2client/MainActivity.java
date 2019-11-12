@@ -15,14 +15,12 @@ import EasySocket.*;
 
 public class MainActivity extends AppCompatActivity {
     public EasySocket cliente;
-    public EditText ipporta;
     public EditText nome;
-    public static Button ConnectBtn;
     public EditText campo;
     public EditText Texto;
+    public EditText Key;
     public Button EnviarBtn;
     public Thread Monitora;
-
     public Runnable Atualizador=new Runnable() {
         @Override
         public void run() {
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                     if(!cliente.Buffer.isEmpty())
                         campo.append(cliente.getEntrada()+"\n");
                 } catch (Exception ex) {
@@ -45,35 +43,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //permisao para executar threads
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        ipporta = findViewById(R.id.editText);
-        nome = findViewById(R.id.editText3);
-        ConnectBtn = findViewById(R.id.button);
+        //pegando variaveis
         campo = findViewById(R.id.editText4);
+        nome = findViewById(R.id.Nome);
         Texto = findViewById(R.id.editText5);
         EnviarBtn = findViewById(R.id.button2);
+        Key = findViewById(R.id.Key);
+
         Monitora = new Thread(Atualizador);
-
-        //
-        String teste = Criptografar.Vigenere("Oi eu sou o goku", "senha");
-        Descriptografar.Vigenere("teste", "senha");
-
-
-
-        //
-        ConnectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String[] x = (ipporta.getText()+"").split(":");
-                cliente = new EasySocket(x[0],Integer.parseInt(x[1]),"cliente");
-                if(cliente.ClientStart())
-                    ConnectBtn.setText("Conectado");
-                cliente.startVerificador();
-                Monitora.start();
-            }
-        });
+        //criando Socket e iniciando
+        cliente = new EasySocket("158.69.246.121",25718,"cliente");
+        cliente.ClientStart();
+        cliente.startVerificador();
+        //verificando
+        Monitora.start();
 
         EnviarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
