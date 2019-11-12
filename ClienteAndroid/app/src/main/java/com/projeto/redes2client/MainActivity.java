@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(300);
                     if(!cliente.Buffer.isEmpty())
                         campo.append(cliente.getEntrada()+"\n");
                 } catch (Exception ex) {
