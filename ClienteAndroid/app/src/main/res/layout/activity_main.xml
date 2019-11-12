@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/editText3"
         android:layout_width="87dp"
-        android:layout_height="47DP"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="20dp"
@@ -35,7 +35,7 @@
     <Button
         android:id="@+id/button"
         android:layout_width="95dp"
-        android:layout_height="47DP"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
@@ -45,8 +45,8 @@
 
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="362dp"
-        android:layout_height="450dp"
+        android:layout_width="360dp"
+        android:layout_height="380dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="start|top"
@@ -82,13 +82,15 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="196dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="13dp"
+        android:layout_width="184dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="KEY"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        tools:layout_editor_absoluteX="199dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

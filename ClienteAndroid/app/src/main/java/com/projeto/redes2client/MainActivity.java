@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 String[] x = (ipporta.getText()+"").split(":");
                 cliente = new EasySocket(x[0],Integer.parseInt(x[1]),"cliente");
                 if(cliente.ClientStart())
-                    ConnectBtn.setText("Conectado");
+                    ConnectBtn.setText("Conectado!");
                 cliente.startVerificador();
                 Monitora.start();
             }
