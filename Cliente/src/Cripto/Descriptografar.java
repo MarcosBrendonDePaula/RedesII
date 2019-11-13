@@ -22,6 +22,10 @@ public class Descriptografar {
         String TextoCriptografado = "";
         texto = texto.toUpperCase();
         Chave = Chave.toUpperCase();
+        if(Chave.length() == 0){
+            return texto;
+        }
+        else{
         String[] textoSeparado = texto.split(" ");
         String NovoTexto = "";
         String NovaChave = "";
@@ -69,7 +73,10 @@ public class Descriptografar {
                 
                     }
                 }
-            
+                if(Chave.length() == textoSeparado[palavras].length()){
+                    NovaChave = Chave;
+                }
+               System.out.println("Chave:" + NovaChave + ","+NovaChave.length()+ " Texto: " + textoSeparado[palavras]+","+textoSeparado[palavras].length());
                 //Descriptografar
                 for(int i = 0; i < textoSeparado[palavras].length(); i++){
                     //System.out.println(texto.charAt(i) - 64 + " : " + NovaChave.charAt(i) + " -> " + Matriz_Vinegere[texto.charAt(i) - 64][NovaChave.charAt(i) - 64]);
@@ -95,8 +102,9 @@ public class Descriptografar {
             NovoTexto = "";
             NovaChave = "";
         }
-        System.out.println(TextoCriptografado); 
+
         return TextoCriptografado;
+        }
         
     }
 }
