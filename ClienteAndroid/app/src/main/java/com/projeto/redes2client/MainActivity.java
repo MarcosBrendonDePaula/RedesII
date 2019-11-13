@@ -15,10 +15,8 @@ import EasySocket.*;
 
 public class MainActivity extends AppCompatActivity {
     public EasySocket cliente;
-    public EditText nome;
     public EditText campo;
     public EditText Texto;
-    public EditText Key;
     public Button EnviarBtn;
     public Thread Monitora;
     public Runnable Atualizador=new Runnable() {
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Thread.sleep(500);
                     if(!cliente.Buffer.isEmpty())
-                        campo.append(Descriptografar.Vigenere(cliente.getEntrada(),Key.getText()+"")+"\n");
+                        campo.append(Descriptografar.Vigenere(cliente.getEntrada(),TelainicialActivity.campo_chave.getText()+"")+"\n");
                 } catch (Exception ex) {
                     System.out.println("Erro Thread");
                 }
@@ -48,10 +46,8 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         //pegando variaveis
         campo = findViewById(R.id.editText4);
-        nome = findViewById(R.id.Nome);
         Texto = findViewById(R.id.editText5);
         EnviarBtn = findViewById(R.id.button2);
-        Key = findViewById(R.id.Key);
 
         Monitora = new Thread(Atualizador);
         //criando Socket e iniciando
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 campo.append("Voce:"+Texto.getText()+"\n");
-                cliente.Enviar( Criptografar.Vigenere(nome.getText()+":"+Texto.getText(),Key.getText()+""));
+                cliente.Enviar( Criptografar.Vigenere(TelainicialActivity.campo_nick.getText()+":"+Texto.getText(),TelainicialActivity.campo_chave.getText()+""));
                 Texto.setText("");
             }
         });
