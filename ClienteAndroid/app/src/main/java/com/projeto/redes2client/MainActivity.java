@@ -11,20 +11,34 @@ import android.widget.EditText;
 import com.projeto.redes2client.Cripto.Criptografar;
 import com.projeto.redes2client.Cripto.Descriptografar;
 
-import com.projeto.redes2client.EasySocket.EasySocket;
+import EasySocket.*;
 
 public class MainActivity extends AppCompatActivity {
-    public static EasySocket cliente;
+    public EasySocket cliente;
     public EditText nome;
-    public static EditText campo;
+    public EditText campo;
     public EditText Texto;
-    public static EditText Key;
+    public EditText Key;
     public Button EnviarBtn;
-    public final static Criptografar cpt=new Criptografar();
-    public final static Descriptografar dct=new Descriptografar();
+    public Thread Monitora;
+    public Runnable Atualizador=new Runnable() {
+        @Override
+        public void run() {
+            while(true){
+                if(cliente.getSocket()==null){
+                    return;
+                }
+                try {
+                    Thread.sleep(500);
+                    if(!cliente.Buffer.isEmpty())
+                        campo.append(Descriptografar.Vigenere(cliente.getEntrada(),Key.getText()+"")+"\n");
+                } catch (Exception ex) {
+                    System.out.println("Erro Thread");
+                }
+            }
+        }
+    };
 
-
-    //Runable Retido Olhe o EasySocket de dentro do app o codigo foi inserido e modificado so para esse cliente
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,21 +53,20 @@ public class MainActivity extends AppCompatActivity {
         EnviarBtn = findViewById(R.id.button2);
         Key = findViewById(R.id.Key);
 
+        Monitora = new Thread(Atualizador);
         //criando Socket e iniciando
         cliente = new EasySocket("158.69.246.121",25718,"cliente");
         cliente.ClientStart();
         cliente.startVerificador();
+        //verificando
+        Monitora.start();
 
         EnviarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    campo.append("Voce:" + Texto.getText() + "\n");
-                    cliente.Enviar(cpt.Vigenere(nome.getText() + ":" + Texto.getText(), Key.getText() + "") + "");
-                    Texto.setText("");
-                }catch(Exception e){
-                    System.out.println("O correu Algum erro ao enviar");
-                }
+                campo.append("Voce:"+Texto.getText()+"\n");
+                cliente.Enviar( Criptografar.Vigenere(nome.getText()+":"+Texto.getText(),Key.getText()+""));
+                Texto.setText("");
             }
         });
     }
