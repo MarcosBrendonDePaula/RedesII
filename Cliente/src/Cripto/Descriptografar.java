@@ -17,6 +17,7 @@ public class Descriptografar {
     public Descriptografar(){
         
     }
+    
     public String Vigenere(String texto, String Chave){
         String TextoCriptografado = "";
         texto = texto.toUpperCase();
@@ -48,36 +49,43 @@ public class Descriptografar {
         //////////////////
                
         for(int palavras = 0; palavras < textoSeparado.length; palavras++){         
-            //Verificar tamanho da chave
-
-            if(Chave.length() != textoSeparado[palavras].length()){
-                cont = 0;
-                while(true){
-                    NovaChave = NovaChave + Chave.charAt(cont);
-                    cont+=1;
+            if((textoSeparado[palavras]).length() == 0){
+                TextoCriptografado = TextoCriptografado + textoSeparado[palavras];
+            }else{
                 
-                    if(Chave.length() == cont)
-                        cont = 0;
-                
-                    if(NovaChave.length() == textoSeparado[palavras].length())
-                        break;
-                
-                }
-            }
             
-            //Descriptografar
-            for(int i = 0; i < textoSeparado[palavras].length(); i++){
-                //System.out.println(texto.charAt(i) - 64 + " : " + NovaChave.charAt(i) + " -> " + Matriz_Vinegere[texto.charAt(i) - 64][NovaChave.charAt(i) - 64]);
-                if((textoSeparado[palavras].charAt(i)) - 64 >= 1 && (textoSeparado[palavras].charAt(i) - 64) <= 26){
-                    for(int j = 1; j < 27; j++){
-                        if(Matriz_Vinegere[NovaChave.charAt(i) - 64][j] == textoSeparado[palavras].charAt(i)){
-                            NovoTexto = NovoTexto + Matriz_Vinegere[0][j];
+            //Verificar tamanho da chave
+                if(Chave.length() != textoSeparado[palavras].length()){
+                    cont = 0;
+                    while(true){
+                        NovaChave = NovaChave + Chave.charAt(cont);
+                        cont+=1;
+                        
+                        if(Chave.length() == cont)
+                            cont = 0;
+                        
+                        if(NovaChave.length() == textoSeparado[palavras].length())
                             break;
-                        }
+                
                     }
                 }
-                else{
-                    NovoTexto = NovoTexto + textoSeparado[palavras].charAt(i);
+            
+                //Descriptografar
+                for(int i = 0; i < textoSeparado[palavras].length(); i++){
+                    //System.out.println(texto.charAt(i) - 64 + " : " + NovaChave.charAt(i) + " -> " + Matriz_Vinegere[texto.charAt(i) - 64][NovaChave.charAt(i) - 64]);
+                    if((textoSeparado[palavras].charAt(i)) - 64 >= 1 && (textoSeparado[palavras].charAt(i) - 64) <= 26){
+                        for(int j = 1; j < 27; j++){
+                            if(Matriz_Vinegere[NovaChave.charAt(i) - 64][j] == textoSeparado[palavras].charAt(i)){
+                                NovoTexto = NovoTexto + Matriz_Vinegere[0][j];
+                                break;
+                            }
+                        }
+                    }
+                    else if((textoSeparado[palavras].charAt(i) - 64) == 0){
+                        NovoTexto = NovoTexto + textoSeparado[palavras].charAt(i);
+                    }else{
+                        NovoTexto = NovoTexto + textoSeparado[palavras].charAt(i);
+                    }
                 }
             }
             if(TextoCriptografado == "")
@@ -89,5 +97,6 @@ public class Descriptografar {
         }
         System.out.println(TextoCriptografado); 
         return TextoCriptografado;
+        
     }
 }

@@ -10,13 +10,14 @@ package Cripto;
  * @author Eric_
  */
 public class Criptografar {
-    private char Matriz_Vinegere[][] = new char[27][27];
+     private char Matriz_Vinegere[][] = new char[27][27];
     
     private char vetor[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     
     public Criptografar(){
-        
+    
     }
+    
     public String Vigenere(String texto, String Chave){
         String TextoCriptografado = "";
         texto = texto.toUpperCase();
@@ -24,7 +25,11 @@ public class Criptografar {
         String[] textoSeparado = texto.split(" ");
         String NovoTexto = "";
         String NovaChave = "";
-
+        
+        for(int a = 0; a< textoSeparado.length;a++){
+            //System.out.println(textoSeparado[a] + " " + textoSeparado[a].length());
+        }
+        
         //Criar a tabela
         for(int i = 1; i < 27; i++){
             Matriz_Vinegere[i][0] = vetor[i-1];
@@ -48,39 +53,45 @@ public class Criptografar {
         //////////////////
                
         for(int palavras = 0; palavras < textoSeparado.length; palavras++){
-            //Verificar tamanho da chave
-            if(Chave.length() != textoSeparado[palavras].length()){
-                cont = 0;
-                while(true){
-                    NovaChave = NovaChave + Chave.charAt(cont);
-                    cont+=1;
-                
-                    if(Chave.length() == cont)
-                        cont = 0;
-                
-                    if(NovaChave.length() == textoSeparado[palavras].length())
-                        break;
-                
-                }
-            }
             
-            //Criptografar
-            for(int i = 0; i < textoSeparado[palavras].length(); i++){
-                //System.out.println(textoSeparado[palavras].charAt(i) + " : " + NovaChave.charAt(i) + " -> " + Matriz_Vinegere[textoSeparado[palavras].charAt(i) - 64][NovaChave.charAt(i) - 64]);
-                if((textoSeparado[palavras].charAt(i)) - 64 >= 1 && (textoSeparado[palavras].charAt(i) - 64) <= 26){
-                    NovoTexto = NovoTexto + Matriz_Vinegere[textoSeparado[palavras].charAt(i) - 64][NovaChave.charAt(i) - 64];
-                }
-                else{
-                    NovoTexto = NovoTexto + textoSeparado[palavras].charAt(i);
-                }
+            if((textoSeparado[palavras]).length() == 0){
+                TextoCriptografado = TextoCriptografado + textoSeparado[palavras];
+            }else{
+                //Verificar tamanho da chave
+                if(Chave.length() != textoSeparado[palavras].length()){
+                    cont = 0;
+                    while(true){
+                        NovaChave = NovaChave + Chave.charAt(cont);
+                        cont+=1;
+                        
+                        if(Chave.length() == cont)
+                            cont = 0;
                 
+                        if(NovaChave.length() == textoSeparado[palavras].length())
+                            break;
+                
+                    }
+                }
+              
+                //Criptografar
+                for(int i = 0; i < textoSeparado[palavras].length(); i++){
+                    System.out.println(textoSeparado[palavras].length() + " " + textoSeparado[palavras]);
+                    //System.out.println(textoSeparado[palavras].charAt(i) + " : " + NovaChave.charAt(i) + " -> " + Matriz_Vinegere[textoSeparado[palavras].charAt(i) - 64][NovaChave.charAt(i) - 64]);
+                    if((textoSeparado[palavras].charAt(i)) - 64 >= 1 && (textoSeparado[palavras].charAt(i) - 64) <= 26){
+                        NovoTexto = NovoTexto + Matriz_Vinegere[textoSeparado[palavras].charAt(i) - 64][NovaChave.charAt(i) - 64];
+                    }
+                    else{
+                        NovoTexto = NovoTexto + textoSeparado[palavras].charAt(i);
+                    }
+                }
             }
             if(TextoCriptografado == "")
                 TextoCriptografado = NovoTexto;
             else
                 TextoCriptografado = TextoCriptografado + " " + NovoTexto;
             NovoTexto = "";
-            NovaChave = "";
+            NovaChave = "";  
+            System.out.println(TextoCriptografado);
         }
         System.out.println(TextoCriptografado); 
         return TextoCriptografado;
