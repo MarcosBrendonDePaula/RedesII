@@ -3,7 +3,10 @@
  * Criado Por Marcos Brendon De Paula
  * ----------------------------------------- UFMS-------------------------------------------
  */
-package EasySocket;
+package com.projeto.redes2client.EasySocket;
+
+import com.projeto.redes2client.Cripto.Descriptografar;
+import com.projeto.redes2client.MainActivity;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -86,7 +89,7 @@ public class EasySocket {
      */
     public void startVerificador(){
         Proc=new Thread(Verificar);
-        Proc.setPriority(Thread.NORM_PRIORITY);
+        Proc.setPriority(Thread.MAX_PRIORITY);
         Proc.start();
     }
     
@@ -131,14 +134,18 @@ public class EasySocket {
                 entrada= new Scanner(Cliente.getInputStream());
                 while(true){
                     Buffer.add(entrada.nextLine());
+                    MainActivity.campo.append(Descriptografar.Vigenere(getEntrada(),MainActivity.Key.getText()+"")+"\n");
                 }
             } catch (Exception ex) {
                 System.out.println("Desconectado");
                 Cliente=null;
+                ClientStart();
+                startVerificador();
                 return;
             }            
         }
     };
+
     /**
      * Retorna O buffer de Entradas
      * @return LinkedList

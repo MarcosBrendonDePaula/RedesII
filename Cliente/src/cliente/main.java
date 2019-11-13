@@ -248,17 +248,15 @@ public class main extends javax.swing.JFrame {
 
     private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            try{
+
                 if(jTextField5.getText().length() == 0 || jTextField3.getText().length() == 0)
                     return;
                 jTextArea2.append("Voce: "+jTextField3.getText()+"\n");
                 //jTextArea1.append("Voce: "+Criptografar.Vigenere(jTextField3.getText(), jTextField5.getText())+"\n");
+                System.out.println("Criptografado:  "+criptografar.Vigenere(jTextField4.getText()+":"+jTextField3.getText(), jTextField5.getText()));
                 Cliente.Enviar(criptografar.Vigenere(jTextField4.getText()+":"+jTextField3.getText(), jTextField5.getText()));
                 //Cliente.Enviar(jTextField4.getText()+": "+jTextField3.getText());
                 jTextField3.setText("");
-            }catch(Exception e){
-                
-            }
         }
     }//GEN-LAST:event_jTextField3KeyPressed
 

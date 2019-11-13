@@ -11,34 +11,18 @@ import android.widget.EditText;
 import com.projeto.redes2client.Cripto.Criptografar;
 import com.projeto.redes2client.Cripto.Descriptografar;
 
-import EasySocket.*;
+import com.projeto.redes2client.EasySocket.EasySocket;
 
 public class MainActivity extends AppCompatActivity {
-    public EasySocket cliente;
+    public static EasySocket cliente;
     public EditText nome;
-    public EditText campo;
+    public static EditText campo;
     public EditText Texto;
-    public EditText Key;
+    public static EditText Key;
     public Button EnviarBtn;
-    public Thread Monitora;
-    public Runnable Atualizador=new Runnable() {
-        @Override
-        public void run() {
-            while(true){
-                if(cliente.getSocket()==null){
-                    return;
-                }
-                try {
-                    Thread.sleep(500);
-                    if(!cliente.Buffer.isEmpty())
-                        campo.append(Descriptografar.Vigenere(cliente.getEntrada(),Key.getText()+"")+"\n");
-                } catch (Exception ex) {
-                    System.out.println("Erro Thread");
-                }
-            }
-        }
-    };
 
+
+    //Runable Retido Olhe o EasySocket de dentro do app o codigo foi inserido e modificado so para esse cliente
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +37,10 @@ public class MainActivity extends AppCompatActivity {
         EnviarBtn = findViewById(R.id.button2);
         Key = findViewById(R.id.Key);
 
-        Monitora = new Thread(Atualizador);
         //criando Socket e iniciando
         cliente = new EasySocket("158.69.246.121",25718,"cliente");
         cliente.ClientStart();
         cliente.startVerificador();
-        //verificando
-        Monitora.start();
 
         EnviarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
