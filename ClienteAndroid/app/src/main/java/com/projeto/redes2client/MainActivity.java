@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     public EditText Texto;
     public static EditText Key;
     public Button EnviarBtn;
+    public final static Criptografar cpt=new Criptografar();
+    public final static Descriptografar dct=new Descriptografar();
 
 
     //Runable Retido Olhe o EasySocket de dentro do app o codigo foi inserido e modificado so para esse cliente
@@ -45,9 +47,13 @@ public class MainActivity extends AppCompatActivity {
         EnviarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                campo.append("Voce:"+Texto.getText()+"\n");
-                cliente.Enviar( Criptografar.Vigenere(nome.getText()+":"+Texto.getText(),Key.getText()+""));
-                Texto.setText("");
+                try {
+                    campo.append("Voce:" + Texto.getText() + "\n");
+                    cliente.Enviar(cpt.Vigenere(nome.getText() + ":" + Texto.getText(), Key.getText() + "") + "");
+                    Texto.setText("");
+                }catch(Exception e){
+                    System.out.println("O correu Algum erro ao enviar");
+                }
             }
         });
     }

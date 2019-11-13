@@ -134,7 +134,7 @@ public class EasySocket {
                 entrada= new Scanner(Cliente.getInputStream());
                 while(true){
                     Buffer.add(entrada.nextLine());
-                    MainActivity.campo.append(Descriptografar.Vigenere(getEntrada(),MainActivity.Key.getText()+"")+"\n");
+                    MainActivity.campo.append(MainActivity.dct.Vigenere(getEntrada(),MainActivity.Key.getText()+"")+"\n");
                 }
             } catch (Exception ex) {
                 System.out.println("Desconectado");
