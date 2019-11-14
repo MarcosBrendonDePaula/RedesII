@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import Cripto.Criptografar;
 import Cripto.Descriptografar;
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
@@ -18,6 +19,7 @@ import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
 import javax.management.Notification;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 /**
  *
  * @author MarcosBrendon
@@ -25,11 +27,9 @@ import javax.swing.JOptionPane;
 public class main extends javax.swing.JFrame {
     private Criptografar criptografar = new Criptografar();
     private Descriptografar descriptografar = new Descriptografar();
-    
     static SystemTray tray = SystemTray.getSystemTray();
     static Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
     static TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
-    
     public EasySocket Cliente;
     public Thread Monitora;
     public javax.swing.JFrame jan;
@@ -55,7 +55,7 @@ public class main extends javax.swing.JFrame {
                         String entrada = Cliente.getEntrada();
                         jTextArea1.append(entrada+"\n");
                         jTextArea2.append(descriptografar.Vigenere(entrada, jTextField5.getText())+"\n");
-                        if(jan.getState()==1)
+                        if(jan.getState()>0)
                             trayIcon.displayMessage("BugsFly",descriptografar.Vigenere(entrada, jTextField5.getText()), MessageType.INFO);
                     }
                 } catch (Exception ex) {
@@ -70,6 +70,13 @@ public class main extends javax.swing.JFrame {
     public main() {
         initComponents();
         jan=this;
+        jTextField4.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField1.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField2.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField3.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField5.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextArea1.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextArea2.setBorder(new LineBorder(Color.BLACK, 2, true));
     }
 
     /**
