@@ -11,11 +11,13 @@ public class TelainicialActivity extends AppCompatActivity {
     static public EditText campo_nick;
     static public EditText campo_chave;
 
-
-
     public void Logar(View view){
-        Intent it = new Intent(TelainicialActivity.this, MainActivity.class);
-        startActivity(it);
+        if (campo_chave.getText().length() != 0 && campo_nick.getText().length() != 0){
+            Intent it = new Intent(TelainicialActivity.this, MainActivity.class);
+            startActivity(it);
+        }
+        else
+            return;
     }
 
     @Override
