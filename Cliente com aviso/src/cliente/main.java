@@ -10,6 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Cripto.Criptografar;
 import Cripto.Descriptografar;
+import java.awt.AWTException;
+import java.awt.Image;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
+import java.awt.TrayIcon.MessageType;
+import javax.management.Notification;
 import javax.swing.JOptionPane;
 /**
  *
@@ -18,11 +25,20 @@ import javax.swing.JOptionPane;
 public class main extends javax.swing.JFrame {
     private Criptografar criptografar = new Criptografar();
     private Descriptografar descriptografar = new Descriptografar();
+    static SystemTray tray = SystemTray.getSystemTray();
+    static Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
+    static TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
     public EasySocket Cliente;
     public Thread Monitora;
     public Runnable Atualizador=new Runnable() {
         @Override
         public void run() {
+            trayIcon.setToolTip("System tray icon demo");
+            try {
+                tray.add(trayIcon);
+            } catch (AWTException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
             while(true){
                 if(Cliente.getSocket()==null){
                     jButton1.setText("DesConectado!");
@@ -36,6 +52,7 @@ public class main extends javax.swing.JFrame {
                         String entrada = Cliente.getEntrada();
                         jTextArea1.append(entrada+"\n");
                         jTextArea2.append(descriptografar.Vigenere(entrada, jTextField5.getText())+"\n");
+                        trayIcon.displayMessage(descriptografar.Vigenere(entrada, jTextField5.getText()).split(":")[0],descriptografar.Vigenere(entrada, jTextField5.getText()), MessageType.INFO);
                     }
                 } catch (Exception ex) {
                     System.out.println("Erro Thread");
