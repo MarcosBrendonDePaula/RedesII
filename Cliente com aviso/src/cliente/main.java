@@ -25,9 +25,11 @@ import javax.swing.JOptionPane;
 public class main extends javax.swing.JFrame {
     private Criptografar criptografar = new Criptografar();
     private Descriptografar descriptografar = new Descriptografar();
+    
     static SystemTray tray = SystemTray.getSystemTray();
     static Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
     static TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
+    
     public EasySocket Cliente;
     public Thread Monitora;
     public javax.swing.JFrame jan;
@@ -53,7 +55,7 @@ public class main extends javax.swing.JFrame {
                         String entrada = Cliente.getEntrada();
                         jTextArea1.append(entrada+"\n");
                         jTextArea2.append(descriptografar.Vigenere(entrada, jTextField5.getText())+"\n");
-                        if(jan.getState()>0)
+                        if(jan.getState()==1)
                             trayIcon.displayMessage("BugsFly",descriptografar.Vigenere(entrada, jTextField5.getText()), MessageType.INFO);
                     }
                 } catch (Exception ex) {
