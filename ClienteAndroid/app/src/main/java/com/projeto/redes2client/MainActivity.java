@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 campo.append("Voce:"+Texto.getText()+"\n");
-                cliente.Enviar( Criptografar.Vigenere(TelainicialActivity.campo_nick.getText()+":"+Texto.getText(),TelainicialActivity.campo_chave.getText()+""));
+                cliente.Enviar( Criptografar.Vigenere(TelainicialActivity.campo_nick.getText()+": "+Texto.getText(),TelainicialActivity.campo_chave.getText()+""));
                 Texto.setText("");
             }
         });
