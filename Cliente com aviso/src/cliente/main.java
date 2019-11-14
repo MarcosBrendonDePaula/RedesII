@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import Cripto.Criptografar;
 import Cripto.Descriptografar;
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
@@ -18,6 +19,7 @@ import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
 import javax.management.Notification;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 /**
  *
  * @author MarcosBrendon
@@ -68,6 +70,13 @@ public class main extends javax.swing.JFrame {
     public main() {
         initComponents();
         jan=this;
+        jTextField4.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField1.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField2.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField3.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextField5.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextArea1.setBorder(new LineBorder(Color.BLACK, 2, true));
+        jTextArea2.setBorder(new LineBorder(Color.BLACK, 2, true));
     }
 
     /**
