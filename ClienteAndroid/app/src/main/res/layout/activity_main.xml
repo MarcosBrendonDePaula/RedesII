@@ -31,7 +31,7 @@
         android:background="@drawable/border_rounded"
         android:ems="10"
         android:hint="Escreva a mensagem"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine|textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,10 +41,10 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="95dp"
-        android:layout_height="48dp"
-        android:background="@drawable/border_rounded"
-        android:text="Enviar"
+        android:layout_width="69dp"
+        android:layout_height="45dp"
+        android:background="@android:drawable/ic_menu_send"
+        android:onClick="Send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.584"

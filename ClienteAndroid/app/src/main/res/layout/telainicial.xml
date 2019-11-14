@@ -7,6 +7,33 @@
     android:orientation="vertical"
     tools:context=".TelainicialActivity">
 
+    <EditText
+        android:id="@+id/Campo_Chave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_rounded"
+        android:ems="10"
+        android:hint="SkyNet"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <Button
+        android:id="@+id/botao_LogarLocal"
+        android:layout_width="38dp"
+        android:layout_height="27dp"
+        android:background="@android:drawable/ic_menu_manage"
+        android:onClick="LogarLocal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="135dp"
@@ -39,27 +66,12 @@
         app:layout_constraintVertical_bias="0.764" />
 
     <EditText
-        android:id="@+id/Campo_Chave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_rounded"
-        android:ems="10"
-        android:hint="OsNormais"
-        android:inputType="textPersonName"
-        android:singleLine="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516" />
-
-    <EditText
         android:id="@+id/Campo_Nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/border_rounded"
         android:ems="10"
-        android:hint="Everaldo"
+        android:hint="JhonConnor"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
